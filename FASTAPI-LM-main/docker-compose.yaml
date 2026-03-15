@@ -1,0 +1,6 @@
+services:
+  api-plum:
+    build: .
+    ports:
+      - "8337:8000"
+    restart: always
