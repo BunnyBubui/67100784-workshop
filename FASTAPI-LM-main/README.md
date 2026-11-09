@@ -1,133 +1,63 @@
-# FastAPI ML Project
+<p align="center">
+  <img src="docs/assets/readme-banner.svg" alt="FastAPI Machine Learning Workshop" width="100%" />
+</p>
 
-A FastAPI project with machine learning capabilities for serving ML models via REST APIs.
+<h1 align="center">FastAPI Machine Learning Workshop</h1>
 
-## Features
+<p align="center">Versioned REST services for machine learning demonstrations</p>
 
-- **FastAPI** - Modern, fast web framework for building APIs
-- **Machine Learning Support** - TensorFlow and scikit-learn integration
-- **Type Safety** - Pydantic models for request/response validation
-- **High Performance** - ASGI server with Uvicorn
+<p align="center">
+  <img alt="Project guide" src="https://img.shields.io/badge/Project%20guide-1d4ed8?style=flat-square" /> <img alt="Python" src="https://img.shields.io/badge/Python-1d4ed8?style=flat-square" /> <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-1d4ed8?style=flat-square" /> <img alt="Pydantic" src="https://img.shields.io/badge/Pydantic-1d4ed8?style=flat-square" />
+</p>
 
-## Requirements
+<p align="center"><a href="#overview">ภาพรวม</a> · <a href="#start">เริ่มใช้งาน</a> · <a href="#structure">ไฟล์สำคัญ</a></p>
 
-- Python 3.13+
-- Virtual environment (venv/)
+<a id="overview"></a>
 
-## Installation
+## ภาพรวม
 
-1. **Clone and navigate to the project:**
-   ```bash
-   cd fastapi-lm
-   ```
+ชุด API workshop แบ่ง route, schema และ service ตามหมวดงานและรุ่น API โปรดเตรียม dependencies และ model artifacts ก่อนเริ่ม server
 
-2. **Activate the virtual environment:**
-   ```bash
-   source venv/bin/activate  # On macOS/Linux
-   ```
+<a id="start"></a>
 
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+## เริ่มต้นใช้งาน
 
-## Running the Application
-
-### Development Mode
-
-Start the development server with auto-reload:
-
-```bash
-uvicorn main:app --reload
+```sh
+python -m venv .venv
+# Activate .venv for your operating system.
+python -m pip install -r requirements.txt
+cd app
+python -m uvicorn main:app --reload --port 8001
 ```
 
-### Production Mode
+กำหนด `ML_MODEL_DIR` เมื่อต้องการ override ตำแหน่งโมเดล และเริ่ม companion frontend ด้วย API base ที่ตรงกัน
 
-Run with specific host and port:
+<a id="structure"></a>
 
-```bash
-python -m uvicorn main:app --host 0.0.0.0 --port 8000
-```
+## ไฟล์สำคัญ
 
-The API will be available at `http://localhost:8000`
+| ตำแหน่ง | หน้าที่ |
+|---|---|
+| [app/](app) | พื้นที่งาน / ไฟล์ประกอบ |
 
-## Project Structure
+<a id="configuration"></a>
 
-```
-fastapi-lm/
-|
-├── app/
-│   ├── main.py
-│   ├── core/
-│   │   ├── config.py
-│   │   ├── logger.py
-│   │   └── security.py
-│   │
-│   ├── api/
-│   │   ├── v1/
-│   │   │   ├── router.py
-│   │   │   ├── flight/
-│   │   │   │   ├── route.py
-│   │   │   │   ├── schema.py
-│   │   │   │   └── service.py
-│   │   │   ├── depression/
-│   │   │   │   ├── route.py
-│   │   │   │   ├── schema.py
-│   │   │   │   └── service.py
-│   │   │   ├── animal/
-│   │   │   │   ├── route.py
-│   │   │   │   ├── schema.py
-│   │   │   │   └── service.py
-│   │   │   └── recommend/
-│   │   │       ├── route.py
-│   │   │       ├── schema.py
-│   │   │       └── service.py
-│
-│   ├── models/
-│   │   ├── flight_price.pkl
-│   │   ├── depression_model.pt
-│   │   ├── animal_cnn.pt
-│   │   └── movie_embedding.faiss
-│
-│   └── utils/
-│       ├── preprocess.py
-│       └── inference.py
-│
-├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-└── README.md
-```
+## ตัวอย่างการตั้งค่า
 
-## API Documentation
+ตัวอย่างค่าตั้งค่าอยู่ในไฟล์ต่อไปนี้ คัดลอกไปยังชื่อไฟล์ local ที่โปรเจกต์อ่านและกำหนดค่าของเครื่องที่ใช้
 
-Once the server is running, access the interactive API documentation:
+| ไฟล์ตัวอย่าง | ตัวแปรสำคัญ |
+|---|---|
+| [.env.example](.env.example) | `ML_MODEL_DIR` |
 
-- **Swagger UI**: http://localhost:8000/docs
-- **ReDoc**: http://localhost:8000/redoc
+<a id="reading"></a>
 
-## Dependencies
+## อ่านต่อ
 
-Key dependencies include:
+- [รายละเอียด implementation](docs/IMPLEMENTATION_GUIDE.md)
+- [กลับ README หลัก](../README.md)
 
-- FastAPI 0.115.0 - Web framework
-- Uvicorn 0.30.6 - ASGI server
-- TensorFlow ≥2.20.0 - Deep learning
-- scikit-learn ≥1.6.0 - Machine learning
-- pandas ≥2.2.2 - Data processing
-- numpy ≥2.1.0 - Numerical computing
 
-## Development
+---
 
-### Project Status
-
-This is a scaffold project set up for ML model serving. The architecture follows FastAPI's routing system with:
-
-- Single entry point (`main.py`)
-- Modular routers for different API endpoints
-- Pydantic models for data validation
-- ML models loaded and served via TensorFlow/scikit-learn
-
-## License
-
-MIT License
+<p align="center"><a href="https://github.com/BunnyBubui">BunnyBubui</a> · <a href="https://github.com/BunnyBubui/test">Software Portfolio</a></p>
