@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 from api.v1.flight.schema import FlightRequest
 import pandas as pd
 import joblib
@@ -6,7 +8,7 @@ from loguru import logger
 
    
 def predict_price(req: FlightRequest) -> pd.DataFrame:
-    MODEL_PATH = r"C:\Users\mainb\Downloads\FASTAPI-LM-main\app\models\flight_price_model.joblib"
+    MODEL_PATH = str(Path(os.getenv("ML_MODEL_DIR", str(Path(__file__).resolve().parents[3] / "models"))) / "flight_price_model.joblib")
     artifact = joblib.load(MODEL_PATH)
     model = artifact["model"]
     features = artifact["features"]

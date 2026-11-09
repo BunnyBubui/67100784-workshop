@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 import joblib
 import pandas as pd
 # from pathlib import Path
@@ -8,7 +10,7 @@ from loguru import logger
 # MODEL_PATH = (
 #     Path(__file__).parent.parent.parent.parent / "models" / "depression_model.joblib"
 # )
-MODEL_PATH = r"C:\Users\mainb\Downloads\FASTAPI-LM-main\app\models\depression_model.joblib"
+MODEL_PATH = str(Path(os.getenv("ML_MODEL_DIR", str(Path(__file__).resolve().parents[3] / "models"))) / "depression_model.joblib")
 
 # Load model once at module level
 artifact = joblib.load(MODEL_PATH)

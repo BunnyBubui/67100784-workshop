@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 
 from math import log
 import joblib
@@ -14,7 +16,7 @@ warnings.filterwarnings('ignore', category=UserWarning)
 
 
 # Get the directory where this script is located
-MODEL_PATH = r"C:\Users\mainb\Downloads\FASTAPI-LM-main\app\models\recommender.joblib"
+MODEL_PATH = str(Path(os.getenv("ML_MODEL_DIR", str(Path(__file__).resolve().parents[3] / "models"))) / "recommender.joblib")
 
 artifact = joblib.load(MODEL_PATH)
 vectorizer = artifact["vectorizer"]
